@@ -274,7 +274,7 @@ def root():
     log("Проверка работоспособности сервера")
     return {
         "status": "ok",
-        "service": "Антифишинг API",
+        "service": "Антимошейник API",
         "version": "1.0",
         "endpoints": ["/check-url", "/check-domain"]
     }
@@ -369,7 +369,7 @@ def check_url(url: str):
 if __name__ == "__main__":
     import uvicorn
     print("=" * 50)
-    print("Антифишинг API запущен.")
+    print("Антимошейник API запущен.")
     print("Документация API: http://localhost:8000/docs")
     print("Пример запроса: http://localhost:8000/check-domain?domain=example.com")
     print("=" * 50)

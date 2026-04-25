@@ -1,50 +1,46 @@
 @echo off
-chcp 65001 >nul
 echo ========================================
-echo   Установка окружение
+echo   Setup
 echo ========================================
 echo.
 
-:: Проверка наличия Python
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo [ОШИБКА] Python не найден. Установите Python 3.11 и добавьте его в PATH.
+    echo [ERROR] Python is not installed. Please install Python 3.11 and add it to PATH.
     pause
     exit /b 1
 )
 
-:: Шаг 1: Создание виртуального окружения (если его нет)
 if exist "venv\" (
-    echo [1/2] Виртуальное окружение уже существует, пропускаем создание.
+    echo [1/2] Virtual environment already exists, skipping creation.
 ) else (
-    echo [1/2] Создание виртуального окружения Python...
+    echo [1/2] Creating Python virtual environment...
     python -m venv venv
     if errorlevel 1 (
-        echo [ОШИБКА] Не удалось создать виртуальное окружение.
+        echo [ERROR] Failed to create virtual environment.
         pause
         exit /b 1
     )
-    echo       Готово.
+    echo       Done.
 )
 
-:: Шаг 2: Установка библиотек
-echo [2/2] Установка необходимых библиотек...
+echo [2/2] Installing required packages...
 call venv\Scripts\activate
 pip install -r requirements.txt
 if errorlevel 1 (
-    echo [ОШИБКА] Не удалось установить библиотеки.
+    echo [ERROR] Failed to install packages.
     pause
     exit /b 1
 )
 
 echo.
 echo ========================================
-echo   Установка успешно завершена!
+echo   Setup completed successfully!
 echo ========================================
 echo.
-echo   Для запуска сервера:
-echo     - дважды кликните start_server.bat
-echo     - или выполните: venv\Scripts\activate
-echo                      python server.py
+echo   To start the server:
+echo     - double-click start_server.bat
+echo     - or run: venv\Scripts\activate
+echo               python server.py
 echo.
 pause
