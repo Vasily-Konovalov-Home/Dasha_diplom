@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Антифишинг — проверка ЦБ РФ",
+  "version": "0.1",
+  "description": "Предупреждает о сайтах из предупредительного списка ЦБ РФ с признаками нелегальной деятельности на финансовом рынке.",
+  "permissions": ["webNavigation", "storage", "history"],
+  "host_permissions": ["http://localhost:8000/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "128": "icon.png"
+  }
+}
